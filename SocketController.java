@@ -28,9 +28,17 @@ public class SocketController {
             Socket soket;
             try {
                 soket = servSock.accept();
-                new Thread(new SocketThread(soket)).start();
                 System.out.println("New client connected, numb="+
                         (++connNumber));
+                var ipAddr = soket.getInetAddress();
+
+                System.out.println("IP client adress: "+
+                        ipAddr.toString());
+                var fullAddr = soket.getRemoteSocketAddress();
+                System.out.println("IP client full adress: "+
+                        fullAddr.toString());
+                new Thread(new SocketThread(soket)).start();
+
             }
             catch (IOException e) {
                 System.out.println("Attempt of new connection failed");
