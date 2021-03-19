@@ -1,4 +1,4 @@
-package oletsky.socketexplorer;
+package socketexplorer;
 
 import java.io.*;
 import java.net.Socket;
@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class SocketThread implements Runnable {
     static int connNumber = 0;
     int id;
-    static boolean sent = false;
+
     static ReentrantLock lock = new ReentrantLock();
 
 
@@ -70,8 +70,7 @@ public class SocketThread implements Runnable {
                     };
                     Random rand = new Random();
 
-                    /*if (kolLines > 0 && !sent)*/ {
-                        //System.out.println("What should be sent back to browser?");
+
                         String msg = messages[rand.nextInt(messages.length)];
                         String info = "<h1>"+msg+"</h1>";
 
@@ -85,7 +84,7 @@ public class SocketThread implements Runnable {
                                 id);
 
                         //sent = true;
-                    }
+
                     System.out.println("*********************");
                 } finally {
                     lock.unlock();
@@ -108,4 +107,5 @@ public class SocketThread implements Runnable {
 
 
 }
+
 
